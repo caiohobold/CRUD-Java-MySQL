@@ -31,11 +31,13 @@ public class App {
             u.setSenha(senha);
             u.setEmail(email);
             new UsuarioDAO().cadastrarUsuario(u);
+            System.out.println("\nCadastro criado!");
         }
         else if (escolha == 2){
             System.out.println("Informe o ID do usuário a ser excluído: ");
             int id = scanner.nextInt();
             usuarioDAO.deletarUsuario(id);
+            System.out.println("\nCadastro removido");
         }
         else if (escolha == 3){
             System.out.println("Informe o ID do usuário a ser procurado: ");
