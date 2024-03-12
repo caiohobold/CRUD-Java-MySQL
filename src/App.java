@@ -37,6 +37,22 @@ public class App {
             int id = scanner.nextInt();
             usuarioDAO.deletarUsuario(id);
         }
+        else if (escolha == 3){
+            System.out.println("Informe o ID do usuário a ser procurado: ");
+            int id = scanner.nextInt();
+            Usuario usuarioEncontrado = usuarioDAO.buscaUsuario(id);
+
+            if(usuarioEncontrado != null){
+                System.out.println("Usuário encontrado:\n");
+                System.out.println("ID: " + usuarioEncontrado.getCodigo());
+                System.out.println("Nome: " + usuarioEncontrado.getNome());
+                System.out.println("Login: " + usuarioEncontrado.getLogin());
+                System.out.println("Senha: " + usuarioEncontrado.getSenha());
+                System.out.println("Email: " + usuarioEncontrado.getEmail());
+            } else {
+                System.out.println("Nenhum usuário encontrado com o ID: " + id);
+            }
+        }
 
 
         scanner.close();

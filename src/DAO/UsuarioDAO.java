@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import conexao.Conexao;
@@ -37,6 +38,32 @@ public class UsuarioDAO {
             e.printStackTrace();
         }
     }
+
+    public Usuario buscaUsuario(int id){
+        Usuario usuario = null;
+        String sql = "SELECT * FROM USUARIO WHERE IDUSUARIO=?";
+
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    usuario = new Usuario();
+                    usuario.setCodigo(rs.getInt("IDUSUARIO"));
+                    usuario.setNome(rs.getString("NOME"));
+                    usuario.setLogin(rs.getString("LOGIN"));
+                    usuario.setSenha(rs.getString("SENHA"));
+                    usuario.setEmail(rs.getString("EMAIL"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return usuario;
+
+    }
+
+
 
 
 }
